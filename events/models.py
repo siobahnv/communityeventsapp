@@ -27,6 +27,9 @@ class Event(models.Model):
     # github issue # automate?
     # tags
 
+    def __str__(self):
+        return self.event_name
+
 class Report(models.Model):
     # foreign key to Event...
     report_title = models.CharField(max_length=100)
