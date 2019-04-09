@@ -2,9 +2,19 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
+
+class Tag(models.Model):
+    name = models.CharField(max_length=200, help_text='Enter a tag name (e.g. Diversity).')
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 class Event(models.Model):
-    event_name = models.CharField(max_length=100)
-    nominator = models.EmailField(max_length=254, null=True)
+    event_name = models.CharField(max_length=200)
+    nominator = models.EmailField(max_length=254, help_text='Enter email address.', null=True)
     event_url = models.URLField(max_length=200)
     
     # location
@@ -20,12 +30,17 @@ class Event(models.Model):
     # month # automate on dates
 
     cfp_url = models.URLField(max_length=200)
-    conference_contact = models.EmailField(max_length=254)
+    conference_contact = models.EmailField(max_length=254, help_text='Enter email address.')
     # internal_contact # should this be here? or be visible?
     # comments/history/actions # this shouldn't be visible?
     votes = models.IntegerField()
     # github issue # automate?
-    # tags
+    
+    # tags - ManyToManyField 
+    tag = models.ManyToManyField(Tag, help_text='Select a tag for this event.')
+
+    class Meta:
+        ordering = ['-start_date', 'event_name']
 
     def __str__(self):
         return self.event_name
@@ -50,6 +65,9 @@ class Report(models.Model):
     # report_url
     # tags
 
+    def __str__(self):
+        return self.report_title
+
 class Sponsorship(models.Model):
     # foreign key to Event...?
     action_by = models.ForeignKey(
@@ -59,21 +77,18 @@ class Sponsorship(models.Model):
     )
 
     # status (proposed/accept/done)
-    PROPOSED = 'P'
-    ACCEPTED = 'A'
-    DONE = 'D'
     STATUS_CHOICES = (
-        (PROPOSED, 'Proposed'),
-        (ACCEPTED, 'Accepted'),
-        (DONE, 'Done'),
+        ('p', 'Proposed'),
+        ('a', 'Accepted'),
+        ('d', 'Done'),
     )
     status = models.CharField(
         max_length=1,
         choices=STATUS_CHOICES,
-        default=PROPOSED,
+        default='p',
     )
 
-    event_rating = models.CharField(max_length=250, null=True) # not be visible?
+    event_rating = models.CharField(max_length=250, help_text='Enter text.', null=True) # not be visible?
     primary_goals = models.TextField(null=True)
 
     # start_date = models.DateField() # automate from event
@@ -87,3 +102,6 @@ class Sponsorship(models.Model):
     # amt in local currency
 
     # tags
+
+    def __str__(self):
+        return self.status # for now...
