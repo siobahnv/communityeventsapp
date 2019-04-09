@@ -37,7 +37,7 @@ class Event(models.Model):
     # github issue # automate?
     
     # tags - ManyToManyField 
-    tag = models.ManyToManyField(Tag, help_text='Select a tag for this event.')
+    tags = models.ManyToManyField(Tag, help_text='Select a tag for this event.')
 
     class Meta:
         ordering = ['-start_date', 'event_name']
