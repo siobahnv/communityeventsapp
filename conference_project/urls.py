@@ -26,3 +26,7 @@ urlpatterns += [
     # path('users/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
 ]
+
+urlpatterns += [
+    path('events/', include('events.urls')),
+]
