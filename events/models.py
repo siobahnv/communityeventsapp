@@ -57,7 +57,18 @@ class Report(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
-    sponsored = models.BooleanField()
+
+    SPONSORED_CHOICES = (
+        ('Y', "Yes"),
+        ('P', "Probably"),
+        ('M', "Maybe"),
+        ('N', "No"),
+    )
+    sponsored = models.CharField(
+        max_length=1,
+        choices=SPONSORED_CHOICES,
+        default='M',
+    ) 
     followup_w_nominee = models.BooleanField()
     execution_date = models.DateField(null=True)
     # notes/comments/history
