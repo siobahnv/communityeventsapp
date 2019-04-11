@@ -46,8 +46,12 @@ class Event(models.Model):
         return self.event_name
 
 class Report(models.Model):
-    # foreign key to Event...
-    report_title = models.CharField(max_length=100)
+    event = models.OneToOneField(
+        Event,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    # report_title = models.CharField(max_length=100)
     action_by = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -66,16 +70,19 @@ class Report(models.Model):
     # tags
 
     def __str__(self):
-        return self.report_title
+        return "%s Report" % self.event.event_name
 
 class Sponsorship(models.Model):
-    # foreign key to Event...?
+    event = models.OneToOneField(
+        Event,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     action_by = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
         null=True
     )
-
     # status (proposed/accept/done)
     STATUS_CHOICES = (
         ('p', 'Proposed'),
@@ -104,4 +111,4 @@ class Sponsorship(models.Model):
     # tags
 
     def __str__(self):
-        return self.status # for now...
+        return "%s Sponsorship" % self.event.event_name

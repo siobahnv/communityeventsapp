@@ -1,4 +1,4 @@
-{% load socialaccount %}
+{% extends "base_generic.html" %} {% block content %} {% load socialaccount %}
 
 <h1>Django Login</h1>
 {% if user.is_authenticated %}
@@ -7,4 +7,4 @@
     <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
     <p><a href="{% url 'account_login' %}">Log In </a></p>
     <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
-    {% endif %}
+    {% endif %} {% endblock %}

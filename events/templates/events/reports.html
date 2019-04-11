@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %} {% block content %} {% if reports_list %}
+<h1>List of Reports</h1>
+<ul>
+    {% for report in reports_list %}
+    <li><a href="{% url 'reports:detail' report.event.id %}">{{ report.event.event_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No reports are available.</p>
+{% endif %} {% endblock %}

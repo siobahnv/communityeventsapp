@@ -1,4 +1,12 @@
 {% extends "base_generic.html" %} {% block content %}
 <h1>{{ event.event_name }}</h1>
-<p>{{ event.event_url }}</p>
+
+<p><a href="{{ event.event_url }}">{{ event.event_url }}</a></p>
+<p><strong>CFP:</strong> <a href="{{ event.cfp_url }}">{{ event.cfp_url }}</a></p>
+<p><strong>Nominator:</strong> {{ event.nominator }}</p>
+<p><strong>Address:</strong> {{ event.address }}, {{ event.city }}, {{ event.state }}, {{ event.country }}</p>
+<p><strong>Dates:</strong> {{ event.start_date }} - {{ event.end_date }}</p>
+<p><strong>Votes:</strong> {{ event.votes }}</p>
+<p><strong>Tags:</strong> {% for tag in book.tags.all %} {{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
 {% endblock %}
