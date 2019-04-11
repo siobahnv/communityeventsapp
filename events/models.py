@@ -57,9 +57,9 @@ class Report(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
-    # sponsored
-    # followup_w_nominee
-    # execution_date
+    sponsored = models.BooleanField()
+    followup_w_nominee = models.BooleanField()
+    execution_date = models.DateField(null=True)
     # notes/comments/history
     # audience_reach
     # expected_attendance_num
@@ -95,7 +95,18 @@ class Sponsorship(models.Model):
         default='p',
     )
 
-    event_rating = models.CharField(max_length=250, help_text='Enter text.', null=True) # not be visible?
+    RATING_CHOICES = (
+        ('MS', "Must sponsor"),
+        ('GS', "It'd be great to support"),
+        ('OC', "Only if we can"),
+        ('JB', "Just be aware this one is coming up"),
+    )
+    event_rating = models.CharField(
+        max_length=2,
+        choices=RATING_CHOICES,
+        default='JB',
+    )    
+    
     primary_goals = models.TextField(null=True)
 
     # start_date = models.DateField() # automate from event
