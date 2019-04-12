@@ -1,8 +1,10 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>Report: {{ sponsorship.event.event_name }}</h1>
+<h1>Sponsorship: {{ sponsorship.event.event_name }}</h1>
 <p><strong>Event Dates:</strong> {{ sponsorship.event.start_date }} - {{ sponsorship.event.end_date }}</p>
 <p><strong>Action by:</strong> {{ sponsorship.action_by.email }}</p>
-<p><strong>Status:</strong></p>
+<p><strong>Status:</strong> {{ sponsorship.get_status_display }}</p>
+<p><strong>Rating:</strong> {{ sponsorship.get_event_rating_display }}</p>
+<p><strong>Primary Goals:</strong> {{ sponsorship.primary_goals }}</p>
 <p><strong></strong></p>
 
 {% endblock %}
