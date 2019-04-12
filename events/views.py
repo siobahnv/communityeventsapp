@@ -18,7 +18,10 @@ def detail(request, event_id):
 
 # @login_required
 def reports(request):
-    # reports_list = Report.objects.all()
-    # context = {'reports_list': reports_list}
-    context = { 'reports_list': []}
+    reports_list = Report.objects.all()
+    context = {'reports_list': reports_list}
     return render(request, 'events/reports.html', context)
+
+def reports_detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'events/reports_detail.html', { 'event': event})
