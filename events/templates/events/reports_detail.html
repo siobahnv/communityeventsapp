@@ -9,4 +9,7 @@
 <p><strong>Expected Attendance Numbers:</strong></p>
 <p><strong>Attendee Type:</strong></p>
 
+<p><strong>Event:</strong> <a href="{% url 'events:detail' report.event.id %}">{{ report.event.event_name }}</a></p>
+<p><strong>Event Sponsorship:</strong> <a href="{% url 'events:sponsorships_detail' report.event.id %}">{{ report.event.event_name }}</a></p>
+
 {% endblock %}

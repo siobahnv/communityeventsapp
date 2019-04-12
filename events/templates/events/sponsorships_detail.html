@@ -7,4 +7,7 @@
 <p><strong>Primary Goals:</strong> {{ sponsorship.primary_goals }}</p>
 <p><strong></strong></p>
 
+<p><strong>Event:</strong> <a href="{% url 'events:detail' sponsorship.event.id %}">{{ sponsorship.event.event_name }}</a></p>
+<p><strong>Event Report:</strong> <a href="{% url 'events:reports_detail' sponsorship.event.id %}">{{ sponsorship.event.event_name }}</a></p>
+
 {% endblock %}
