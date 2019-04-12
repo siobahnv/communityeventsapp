@@ -14,14 +14,14 @@ class Tag(models.Model):
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
-    nominator = models.EmailField(max_length=254, help_text='Enter email address.', null=True)
+    nominator = models.EmailField(max_length=254, help_text='Enter email address.', null=True, blank=True)
     event_url = models.URLField(max_length=200)
     
     # location
     # country code & region/region code, determined by location
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    state_province = models.CharField(max_length=100)
+    state_province = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100)
     
     start_date = models.DateField()
@@ -29,15 +29,15 @@ class Event(models.Model):
     # fiscal year/half/quarter # automate on dates
     # month # automate on dates
 
-    cfp_url = models.URLField(max_length=200)
-    conference_contact = models.EmailField(max_length=254, help_text='Enter email address.')
+    cfp_url = models.URLField(max_length=200, null=True, blank=True)
+    conference_contact = models.EmailField(max_length=254, help_text='Enter email address.', null=True, blank=True)
     # internal_contact # should this be here? or be visible?
     # comments/history/actions # this shouldn't be visible?
     votes = models.IntegerField()
     # github issue # automate?
     
     # tags - ManyToManyField 
-    tags = models.ManyToManyField(Tag, help_text='Select a tag for this event.')
+    tags = models.ManyToManyField(Tag, blank=True, help_text='Select a tag for this event.')
 
     class Meta:
         ordering = ['-start_date', 'event_name']

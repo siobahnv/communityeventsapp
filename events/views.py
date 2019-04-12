@@ -1,9 +1,15 @@
+import datetime
+
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 
 from .models import *
+from .forms import *
 
 # Create your views here.
 
@@ -34,3 +40,50 @@ def sponsorships(request):
 def sponsorships_detail(request, event_id):
     sponsorship = get_object_or_404(Sponsorship, pk=event_id)
     return render(request, 'events/sponsorships_detail.html', { 'sponsorship': sponsorship})
+
+# @permission_required('')
+def edit_event(request, event_id):
+    """View function for editing a specific event."""
+    event = get_object_or_404(Event, pk=event_id)
+
+    # If this is a POST request then process the Form Data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request (binding):
+        # form = EditCommunityEvent(request.POST)
+        form = EditEventModelForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid(): # TODO: Figure this part out...
+            # event.event_name = form.cleaned_data['event_name']
+            event.save()
+
+            # redirect
+            return HttpResponseRedirect(reverse('events:index'))
+
+    # If this is a GET (or any other method) create the default form.
+    else:
+        # form = EditCommunityEvent()
+        form = EditEventModelForm()
+
+    context = {
+        'form': form,
+        'event': event,
+    }
+
+    return render(request, 'events/event_edit.html', context)
+
+class EventCreate(CreateView):
+    model = Event
+    fields = '__all__'
+    success_url = reverse_lazy('events:index')
+    # exclude = ('tags',)
+    # initial = {}
+
+class EventUpdate(UpdateView):
+    model = Event
+    fields = '__all__'
+    success_url = reverse_lazy('events:index')
+
+class EventDelete(DeleteView):
+    model = Event
+    success_url = reverse_lazy('events:index')
