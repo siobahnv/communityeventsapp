@@ -8,5 +8,5 @@
 <p><strong>Dates:</strong> {{ event.start_date }} - {{ event.end_date }}</p>
 <p><strong>Votes:</strong> {{ event.votes }}</p>
 <p><strong>Tags:</strong> {% for tag in book.tags.all %} {{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-
+<p><strong>Event Report:</strong> <a href="{% url 'events:reports_detail' event.id %}">{{ event.event_name }}</a></p>
 {% endblock %}

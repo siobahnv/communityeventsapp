@@ -1,3 +1,12 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>Hello!</h1>
+<h1>Report: {{ report.event.event_name }}</h1>
+<p><strong>Event Dates:</strong> {{ report.event.start_date }} - {{ report.event.end_date }}</p>
+<p><strong>Action by:</strong> {{ report.action_by.email }}</p>
+<p><strong>Sponsored:</strong> {{ report.get_sponsored_display }}</p>
+<p><strong>Followed Up with Nominee:</strong></p>
+<p><strong>Execution Date:</strong></p>
+<p><strong>Audience Reach:</strong></p>
+<p><strong>Expected Attendance Numbers:</strong></p>
+<p><strong>Attendee Type:</strong></p>
+
 {% endblock %}

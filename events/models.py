@@ -70,7 +70,7 @@ class Report(models.Model):
         default='M',
     ) 
     followup_w_nominee = models.BooleanField()
-    execution_date = models.DateField(null=True)
+    execution_date = models.DateField(null=True, blank=True)
     # notes/comments/history
     # audience_reach
     # expected_attendance_num
@@ -118,7 +118,7 @@ class Sponsorship(models.Model):
         default='JB',
     )    
     
-    primary_goals = models.TextField(null=True)
+    primary_goals = models.TextField(null=True, blank=True)
 
     # start_date = models.DateField() # automate from event
     # end_date = models.DateField() # automate from event

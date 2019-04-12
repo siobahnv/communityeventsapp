@@ -23,5 +23,14 @@ def reports(request):
     return render(request, 'events/reports.html', context)
 
 def reports_detail(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
-    return render(request, 'events/reports_detail.html', { 'event': event})
+    report = get_object_or_404(Report, pk=event_id)
+    return render(request, 'events/reports_detail.html', { 'report': report})
+
+def sponsorships(request):
+    sponsorships_list = Sponsorship.objects.all()
+    context = {'sponsorships_list': sponsorships_list}
+    return render(request, 'events/sponsorships.html', context)
+
+def sponsorships_detail(request, event_id):
+    sponsorship = get_object_or_404(Sponsorship, pk=event_id)
+    return render(request, 'events/sponsorships_detail.html', { 'sponsorship': sponsorship})

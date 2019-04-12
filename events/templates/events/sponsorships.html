@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %} {% block content %} {% if sponsorships_list %}
+<h1>List of Sponsorships</h1>
+<ul>
+    {% for sponsorship in sponsorships_list %}
+    <li><a href="{% url 'events:sponsorships_detail' sponsorship.event.id %}">{{ sponsorship.event.event_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No sponsorships are available.</p>
+{% endif %} {% endblock %}
