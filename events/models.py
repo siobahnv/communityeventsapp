@@ -77,7 +77,7 @@ class Report(models.Model):
         choices=SPONSORED_CHOICES,
         default='M',
     ) 
-    followup_w_nominee = models.BooleanField()
+    followup_w_nominee = models.BooleanField(null=True)
     execution_date = models.DateField(null=True, blank=True)
     # notes/comments/history
     # audience_reach
@@ -132,7 +132,7 @@ class Sponsorship(models.Model):
     # end_date = models.DateField() # automate from event
 
     # rec'd sponsorship level
-    sponsored_before = models.BooleanField()
+    sponsored_before = models.BooleanField(null=True)
     # proposed sponsor amt
     # actual sponsor amt
     # payment currency
