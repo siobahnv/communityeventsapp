@@ -1,11 +1,27 @@
 {% extends "base_generic.html" %} {% block content %} {% if events_list %}
 <h1>List of Events</h1>
 <a href="{% url 'events:event_create' %}">Create new event</a>
-<ul>
+
+<table>
+    <tr>
+        <th>Event</th>
+        <th>URL</th>
+        <th>Country</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Votes</th>
+    </tr>
     {% for event in events_list %}
-    <li><a href="{% url 'events:detail' event.id %}">{{ event.event_name }}</a></li>
+    <tr>
+        <td><a href="{% url 'events:detail' event.id %}">{{ event.event_name }}</a></td>
+        <td><a href="{{ event.event_url }}">{{ event.event_url }}</a></td>
+        <td>{{ event.country }}</td>
+        <td>{{ event.start_date }}</td>
+        <td>{{ event.end_date }}</td>
+        <td>{{ event.votes }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% else %}
 <p>No events are available.</p>
 {% endif %} {% endblock %}

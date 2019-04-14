@@ -1,6 +1,10 @@
 {% extends "base_generic.html" %} {% block content %}
 <h1>{{ event.event_name }}</h1>
 
+<a href="{% url 'events:event_update' event.id %}">Edit</a>
+<a href="{% url 'events:event_delete' event.id %}">Delete</a>
+
+
 <p><a href="{{ event.event_url }}">{{ event.event_url }}</a></p>
 <p><strong>CFP:</strong> <a href="{{ event.cfp_url }}">{{ event.cfp_url }}</a></p>
 <p><strong>Nominator:</strong> {{ event.nominator }}</p>

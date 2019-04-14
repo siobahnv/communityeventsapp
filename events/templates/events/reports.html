@@ -1,10 +1,26 @@
 {% extends "base_generic.html" %} {% block content %} {% if reports_list %}
 <h1>List of Reports</h1>
-<ul>
+
+<table>
+    <tr>
+        <th>Report</th>
+        <th>Action By</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Sponsored</th>
+        <th>FU w/Nominee</th>
+    </tr>
     {% for report in reports_list %}
-    <li><a href="{% url 'events:reports_detail' report.event.id %}">{{ report.event.event_name }}</a></li>
+    <tr>
+        <td><a href="{% url 'events:reports_detail' report.event.id %}">{{ report.event.event_name }}</a></td>
+        <td>{{ report.action_by.email }}</td>
+        <td>{{ report.event.start_date }}</td>
+        <td>{{ report.event.end_date }}</td>
+        <td>{{ report.get_sponsored_display }}</td>
+        <td>{{ report.followup_w_nominee }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% else %}
 <p>No reports are available.</p>
 {% endif %} {% endblock %}

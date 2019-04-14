@@ -1,10 +1,28 @@
 {% extends "base_generic.html" %} {% block content %} {% if sponsorships_list %}
 <h1>List of Sponsorships</h1>
-<ul>
+
+<table>
+    <tr>
+        <th>Sponsorship</th>
+        <th>Action By</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Rating</th>
+        <th>Sponsored Before</th>
+    </tr>
     {% for sponsorship in sponsorships_list %}
-    <li><a href="{% url 'events:sponsorships_detail' sponsorship.event.id %}">{{ sponsorship.event.event_name }}</a></li>
+    <tr>
+        <td><a href="{% url 'events:sponsorships_detail' sponsorship.event.id %}">{{ sponsorship.event.event_name }}</a></td>
+        <td>{{ sponsorship.action_by.email }}</td>
+        <td>{{ sponsorship.event.start_date }}</td>
+        <td>{{ sponsorship.event.end_date }}</td>
+        <td>{{ sponsorship.get_status_display }}</td>
+        <td>{{ sponsorship.get_event_rating_display }}</td>
+        <td>{{ sponsorship.sponsored_before }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% else %}
 <p>No sponsorships are available.</p>
 {% endif %} {% endblock %}
