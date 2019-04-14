@@ -58,3 +58,31 @@ class EventUpdate(UpdateView):
 class EventDelete(DeleteView):
     model = Event
     success_url = reverse_lazy('events:index')
+
+class ReportCreate(CreateView):
+    model = Report
+    fields = '__all__'
+    success_url = reverse_lazy('events:reports')
+
+class ReportUpdate(UpdateView):
+    model = Report
+    fields = '__all__'
+    success_url = reverse_lazy('events:reports')
+
+class ReportDelete(DeleteView):
+    model = Report
+    success_url = reverse_lazy('events:reports')
+
+class SponsorshipCreate(CreateView):
+    model = Sponsorship
+    fields = '__all__'
+    success_url = reverse_lazy('events:sponsorships')
+
+class SponsorshipUpdate(UpdateView):
+    model = Sponsorship
+    fields = '__all__'
+    success_url = reverse_lazy('events:sponsorships')
+
+class SponsorshipDelete(DeleteView):
+    model = Sponsorship
+    success_url = reverse_lazy('events:sponsorships')

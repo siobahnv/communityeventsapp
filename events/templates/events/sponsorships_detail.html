@@ -1,5 +1,8 @@
 {% extends "base_generic.html" %} {% block content %}
 <h1>Sponsorship: {{ sponsorship.event.event_name }}</h1>
+
+<a href="{% url 'events:sponsorship_update' sponsorship.event.id %}">Edit</a>
+
 <p><strong>Event Dates:</strong> {{ sponsorship.event.start_date }} - {{ sponsorship.event.end_date }}</p>
 <p><strong>Action by:</strong> {{ sponsorship.action_by.email }}</p>
 <p><strong>Status:</strong> {{ sponsorship.get_status_display }}</p>
