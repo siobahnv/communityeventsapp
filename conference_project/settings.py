@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'bootstrap4',
+    'crispy_forms',
+    'widget_tweaks',
 
     'events.apps.EventsConfig',
 
@@ -240,3 +242,5 @@ BOOTSTRAP4 = {
         'inline': 'bootstrap4.renderers.InlineFieldRenderer',
     },
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
