@@ -44,6 +44,14 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_name
+    
+    def create_report_sponsorship(self):
+        report = Report(event=self)
+        report.save()
+
+        sponsorship = Sponsorship(event=self)
+        sponsorship.save()
+    
 
 class Report(models.Model):
     event = models.OneToOneField(
