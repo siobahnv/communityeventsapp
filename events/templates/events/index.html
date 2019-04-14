@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %} {% block content %} {% if events_list %}
 <h1>List of Events</h1>
 <a href="{% url 'events:event_create' %}">Create new event</a>
-<input id="datepicker">
+<input data-toggle="datepicker">
 
 <table>
     <tr>
