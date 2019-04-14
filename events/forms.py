@@ -12,6 +12,9 @@ from .models import Event, Report, Sponsorship
 #     start_date = forms.DateField()
 #     end_date = forms.DateField()
 
+class DateForm(forms.Form):
+    date = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+
 class EditEventModelForm(ModelForm):
     class Meta:
         model = Event

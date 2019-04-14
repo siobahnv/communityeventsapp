@@ -12,6 +12,7 @@ ubuntu-bionic-18.04-cloudimg-console.log
 
 # dependencies
 /frontend/node_modules
+/node_modules
 /.pnp
 .pnp.js
 *.pnp
