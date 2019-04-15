@@ -9,6 +9,8 @@ secrets.*
 .vagrant/
 Vagrantfile
 ubuntu-bionic-18.04-cloudimg-console.log
+*.tar.gz
+elasticsearch-7.0.0/
 
 # dependencies
 /frontend/node_modules
