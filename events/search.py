@@ -38,8 +38,9 @@ def gendata():
     events = Events.objects.all()
     for event in events:
         yield {
-            "_index": "events",
-            "_type": "document",
+            # "_index": "events",
+            # "_type": "document",
+            "_type": "_doc",
             # "_id": event.id,
             "doc": {"event": event},
         }
