@@ -3,6 +3,7 @@ from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl import DocType, Text, Date, Integer, Keyword, Search, Document
 from elasticsearch.helpers import bulk
 from elasticsearch import Elasticsearch
+from datetime import datetime
 
 from . import models
 from .models import *
@@ -42,7 +43,20 @@ def gendata():
             # "_type": "document",
             "_type": "_doc",
             # "_id": event.id,
-            "doc": {"event": str(event)},
+            "doc": {
+                "event": str(event),
+                "nominator": str(event.nominator),
+                "url": str(event.event_url),
+                "address": str(event.address),
+                "city": str(event.city),
+                "country": str(event.country),
+                "start_date": event.start_date.strftime("%Y-%m-%d"),
+                "end_date": event.end_date.strftime("%Y-%m-%d"),
+                "cfp_url": str(event.cfp_url),
+                "conference_contact": str(event.conference_contact),
+                "votes": int(event.votes),
+                "tags": str(event.tags),
+                },
         }
 
 # Bulk indexing function, run in shell
