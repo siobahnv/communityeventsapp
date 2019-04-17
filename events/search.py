@@ -13,41 +13,41 @@ connections.create_connection(hosts=['localhost'])
 
 # Elasticsearch "model" mapping out what fields to index
 # class EventIndex(DocType):
-class EventIndex(Document):
-    event_name = Text()
-    nominator = Text()
-    event_url = Text()
-    address = Text()
-    city = Text()
-    state_province = Text()
-    country = Text()
-    start_date = Date()
-    end_date = Date()
-    cfp_url = Text()
-    conference_contact = Text()
-    votes = Integer()
-    tags = Keyword(multi=True)
+# class EventIndex(Document):
+    # event_name = Text()
+    # nominator = Text()
+    # event_url = Text()
+    # address = Text()
+    # city = Text()
+    # state_province = Text()
+    # country = Text()
+    # start_date = Date()
+    # end_date = Date()
+    # cfp_url = Text()
+    # conference_contact = Text()
+    # votes = Integer()
+    # tags = Keyword(multi=True)
 
-    class Index:
-        name = 'event-index'
+    # class Index:
+    #     name = 'event-index'
 
     # class Meta:
     #     index = 'event-index'
 
 def gendata():
-    events = Events.objects.all()
+    events = Event.objects.all()
     for event in events:
         yield {
-            # "_index": "events",
+            "_index": "event-index",
             # "_type": "document",
             "_type": "_doc",
             # "_id": event.id,
-            "doc": {"event": event},
+            "doc": {"event": str(event)},
         }
 
 # Bulk indexing function, run in shell
 def bulk_indexing():
-    EventIndex.init()
+    # EventIndex.init()
     es = Elasticsearch()
     # bulk(client=es, actions=(b.indexing() for b in models.Event.objects.all().iterator()))
     bulk(es, gendata())
